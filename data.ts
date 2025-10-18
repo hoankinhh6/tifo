@@ -1,3 +1,128 @@
+// GitHub Release API types
+interface GitHubAsset {
+  name: string;
+  browser_download_url: string;
+}
+
+interface GitHubRelease {
+  tag_name: string;
+  assets: GitHubAsset[];
+}
+
+// Function to fetch latest release data from GitHub API
+async function fetchLatestRelease(): Promise<GitHubRelease | null> {
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/realvux/toolveo/releases/latest"
+    );
+    if (!response.ok) {
+      console.error("Failed to fetch release data:", response.statusText);
+      return null;
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching release data:", error);
+    return null;
+  }
+}
+
+// Function to extract download URLs from release assets
+function extractDownloadUrls(release: GitHubRelease) {
+  const downloads = [];
+
+  // Find Windows executable - looking for .exe files with x64 and setup
+  const windowsAsset = release.assets.find(
+    (asset) => asset.name.endsWith("-setup.exe") && asset.name.includes("x64")
+  );
+  if (windowsAsset) {
+    downloads.push({
+      href: windowsAsset.browser_download_url,
+      os: "Windows",
+    });
+  }
+
+  // Find macOS Apple Silicon DMG - looking for .dmg files with aarch64
+  const macArmAsset = release.assets.find(
+    (asset) => asset.name.endsWith(".dmg") && asset.name.includes("aarch64")
+  );
+  if (macArmAsset) {
+    downloads.push({
+      href: macArmAsset.browser_download_url,
+      os: "macOS (Apple Silicon)",
+    });
+  }
+
+  // Find macOS Intel DMG - looking for .dmg files with x64 but not aarch64
+  const macIntelAsset = release.assets.find(
+    (asset) =>
+      asset.name.endsWith(".dmg") &&
+      asset.name.includes("x64") &&
+      !asset.name.includes("aarch64")
+  );
+  if (macIntelAsset) {
+    downloads.push({
+      href: macIntelAsset.browser_download_url,
+      os: "macOS (Intel)",
+    });
+  }
+
+  return downloads;
+}
+
+// Function to get dynamic download data
+export async function getDynamicDownloadData() {
+  const release = await fetchLatestRelease();
+
+  if (!release) {
+    // Fallback to static data if API fails
+    return {
+      title: "Link Tải Tool VEO3 (Offline)",
+      subtitle: "Chọn phiên bản phù hợp với hệ điều hành của bạn để bắt đầu.",
+      downloads: [
+        {
+          href: "https://github.com/realvux/toolveo/releases/download/1.3.0/veo3-auto_1.3.2_x64-setup.exe",
+          os: "Windows",
+        },
+        {
+          href: "https://github.com/realvux/toolveo/releases/download/1.3.0/veo3-auto_1.3.2_aarch64.dmg",
+          os: "macOS (Apple Silicon)",
+        },
+        {
+          href: "https://github.com/realvux/toolveo/releases/download/1.3.0/veo3-auto_1.3.2_x64.dmg",
+          os: "macOS (Intel)",
+        },
+      ],
+    };
+  }
+
+  const downloads = extractDownloadUrls(release);
+
+  return {
+    title: `Link Tải Tool VEO3 ${release.tag_name}`,
+    subtitle: "Chọn phiên bản phù hợp với hệ điều hành của bạn để bắt đầu.",
+    downloads:
+      downloads.length > 0
+        ? downloads
+        : [
+            // Fallback downloads if extraction fails
+            {
+              href: "https://github.com/realvux/toolveo/releases/latest",
+              os: "Tải từ GitHub",
+            },
+          ],
+  };
+}
+
+// Function to get complete site data with dynamic downloads
+export async function getDynamicSiteData(): Promise<SiteData> {
+  const dynamicDownloadData = await getDynamicDownloadData();
+
+  return {
+    ...defaultData,
+    download: dynamicDownloadData,
+  };
+}
+
 export interface SiteData {
   header: {
     navLinks: { name: string; href: string }[];
