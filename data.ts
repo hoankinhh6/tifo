@@ -80,15 +80,15 @@ export async function getDynamicDownloadData() {
       subtitle: "Chọn phiên bản phù hợp với hệ điều hành của bạn để bắt đầu.",
       downloads: [
         {
-          href: "https://github.com/realvux/toolveo/releases/download/1.3.0/veo3-auto_1.3.2_x64-setup.exe",
+          href: "https://github.com/realvux/toolveo/releases/download/v1.5.1/SuperVeo_1.5.1_x64-setup.exe",
           os: "Windows",
         },
         {
-          href: "https://github.com/realvux/toolveo/releases/download/1.3.0/veo3-auto_1.3.2_aarch64.dmg",
+          href: "https://github.com/realvux/toolveo/releases/download/v1.5.1/SuperVeo_1.5.1_aarch64.dmg",
           os: "macOS (Apple Silicon)",
         },
         {
-          href: "https://github.com/realvux/toolveo/releases/download/1.3.0/veo3-auto_1.3.2_x64.dmg",
+          href: "https://github.com/realvux/toolveo/releases/download/v1.5.1/SuperVeo_1.5.1_x64.dmg",
           os: "macOS (Intel)",
         },
       ],
