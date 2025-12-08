@@ -64,6 +64,16 @@ const Download: React.FC<{ content: DownloadContent }> = ({ content }) => {
             <DownloadButton key={download.os} {...download} />
           ))}
         </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="#lien-he"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-slate-800/80 border border-fuchsia-500/50 text-fuchsia-300 hover:bg-fuchsia-600 hover:text-white hover:border-fuchsia-500 hover:shadow-lg hover:shadow-fuchsia-500/25 transition-all duration-300 group backdrop-blur-sm"
+          >
+            <span className="text-lg font-bold tracking-wide">Bạn cần hỗ trợ kích hoạt? Liên hệ ngay</span>
+            <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </div>
       </div>
     </section>
   );
