@@ -50,8 +50,8 @@ const PricingCard: React.FC<{ planData: Plan, onPurchaseClick: () => void }> = (
 
   return (
     <div className={`relative flex flex-col h-full rounded-2xl transition-all duration-300 ${isPopular
-      ? 'bg-gradient-to-b from-gray-800 to-gray-900 border-2 border-fuchsia-500 shadow-[0_0_40px_rgba(192,38,211,0.2)] transform sm:-translate-y-4'
-      : 'bg-gray-800/40 border border-gray-700/50 hover:bg-gray-800/60 hover:border-gray-600'
+      ? 'bg-gradient-to-b from-slate-800 to-slate-900 border-2 border-fuchsia-500 shadow-[0_0_40px_rgba(192,38,211,0.2)] transform sm:-translate-y-4'
+      : 'bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600'
       }`}>
       {isPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
@@ -60,25 +60,24 @@ const PricingCard: React.FC<{ planData: Plan, onPurchaseClick: () => void }> = (
       )}
 
       <div className="p-8 flex flex-col flex-grow">
-        <h3 className={`text-xl font-bold ${isPopular ? 'text-white' : 'text-gray-100'}`}>{planData.plan}</h3>
-        <p className="mt-2 text-sm text-gray-400 min-h-[40px] leading-relaxed">{planData.description}</p>
+        <h3 className={`text-xl font-bold ${isPopular ? 'text-white' : 'text-slate-100'}`}>{planData.plan}</h3>
+        <p className="mt-2 text-sm text-slate-400 min-h-[40px] leading-relaxed">{planData.description}</p>
 
         <div className="mt-6 flex items-baseline">
           <span className="text-4xl font-extrabold text-white tracking-tight">{planData.price}</span>
-          <span className="ml-2 text-sm font-medium text-gray-400">{planData.priceSuffix}</span>
+          <span className="ml-2 text-sm font-medium text-slate-400">{planData.priceSuffix}</span>
         </div>
 
-        <div className="mt-8 mb-8 h-px bg-gray-700/50" />
+        <div className="mt-8 mb-8 h-px bg-slate-700/50" />
 
         <ul className="space-y-4 flex-grow">
           {planData.features.map((feature, index) => {
-            // Check if this is the exclusive feature to highlight
             const isExclusive = feature.includes("Clone video đối thủ") || feature.toLowerCase().includes("độc quyền");
 
             return (
               <li key={index} className="flex items-start">
                 {isExclusive ? <StarIcon /> : <CheckIcon />}
-                <span className={`ml-3 text-sm leading-6 ${isExclusive ? 'text-yellow-400 font-semibold' : 'text-gray-300'}`}>
+                <span className={`ml-3 text-sm leading-6 ${isExclusive ? 'text-yellow-400 font-semibold' : 'text-slate-300'}`}>
                   {feature}
                 </span>
               </li>
@@ -89,8 +88,8 @@ const PricingCard: React.FC<{ planData: Plan, onPurchaseClick: () => void }> = (
         <button
           onClick={onPurchaseClick}
           className={`mt-8 w-full py-4 px-6 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 shadow-lg ${isPopular
-            ? 'bg-gradient-to-r from-fuchsia-600 to-pink-600 hover:from-fuchsia-500 hover:to-pink-500 text-white hover:shadow-fuchsia-500/25'
-            : 'bg-gray-700 hover:bg-gray-600 text-white hover:shadow-lg'
+            ? 'bg-gradient-to-r from-fuchsia-600 to-pink-600 hover:from-fuchsia-500 hover:to-pink-500 text-white hover:shadow-fuchsia-500/25 scale-105 active:scale-100'
+            : 'bg-slate-800 hover:bg-slate-700 text-white hover:shadow-lg active:scale-95'
             }`}
         >
           ĐẶT MUA NGAY
@@ -121,7 +120,7 @@ const Pricing: React.FC<{ content: PricingContent }> = ({ content }) => {
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-6">
             {title}
           </h2>
-          <p className="text-xl text-gray-400 leading-relaxed">
+          <p className="text-xl text-slate-400 leading-relaxed">
             {subtitle}
           </p>
         </div>
@@ -134,14 +133,14 @@ const Pricing: React.FC<{ content: PricingContent }> = ({ content }) => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 via-fuchsia-500 to-red-500 rounded-xl blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
 
                 {/* Main Content Box */}
-                <div className="relative bg-gray-900 rounded-xl p-4 sm:p-5 flex items-center justify-center text-center shadow-xl">
+                <div className="relative bg-slate-900 rounded-xl p-4 sm:p-5 flex items-center justify-center text-center shadow-xl">
                   <div className="flex flex-col sm:flex-row items-center gap-3">
                     <span className="flex h-3 w-3 relative">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                     </span>
                     <div
-                      className="text-sm sm:text-base text-gray-200 leading-relaxed font-medium"
+                      className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium"
                       dangerouslySetInnerHTML={{ __html: additionalOption }}
                     />
                   </div>
@@ -157,7 +156,7 @@ const Pricing: React.FC<{ content: PricingContent }> = ({ content }) => {
 
         {/* Policy Section */}
         <div className="max-w-4xl mx-auto mt-24">
-          <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 md:p-10">
+          <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 md:p-10 hover:border-slate-600 transition-colors">
             <h3 className="text-2xl font-bold text-white text-center mb-8">{policy.title}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="flex gap-4">
@@ -168,7 +167,7 @@ const Pricing: React.FC<{ content: PricingContent }> = ({ content }) => {
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white mb-2">{policy.trialTitle}</h4>
-                  <p className="text-sm text-gray-400 leading-relaxed">{policy.trialDescription}</p>
+                  <p className="text-sm text-slate-400 leading-relaxed">{policy.trialDescription}</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -179,7 +178,7 @@ const Pricing: React.FC<{ content: PricingContent }> = ({ content }) => {
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white mb-2">{policy.refundTitle}</h4>
-                  <p className="text-sm text-gray-400 leading-relaxed">{policy.refundDescription}</p>
+                  <p className="text-sm text-slate-400 leading-relaxed">{policy.refundDescription}</p>
                 </div>
               </div>
             </div>
@@ -189,34 +188,34 @@ const Pricing: React.FC<{ content: PricingContent }> = ({ content }) => {
 
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+          className="fixed inset-0 bg-slate-950/90 backdrop-blur-sm flex justify-center items-center z-50 p-4"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="bg-gray-900 rounded-2xl p-8 max-w-md w-full relative border border-gray-700/50 shadow-2xl"
+            className="bg-slate-900 rounded-2xl p-8 max-w-md w-full relative border border-slate-700/50 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-full"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-full"
               aria-label="Đóng"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-white mb-2">{purchaseModal.title}</h2>
-              <p className="text-gray-400 text-sm">{purchaseModal.subtitle}</p>
+              <p className="text-slate-400 text-sm">{purchaseModal.subtitle}</p>
             </div>
             <div className="space-y-3">
               {purchaseModal.supportContacts.map(contact => (
-                <div key={contact.name} className="bg-gray-800/50 p-4 rounded-xl flex items-center justify-between group hover:bg-gray-800 transition-colors border border-transparent hover:border-fuchsia-500/20">
+                <div key={contact.name} className="bg-slate-800/50 p-4 rounded-xl flex items-center justify-between group hover:bg-slate-800 transition-colors border border-transparent hover:border-fuchsia-500/20">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
                       Z
                     </div>
                     <div>
                       <p className="font-semibold text-white text-sm">{contact.name}</p>
-                      <p className="text-xs text-gray-400">{contact.phone}</p>
+                      <p className="text-xs text-slate-400">{contact.phone}</p>
                     </div>
                   </div>
                   <a

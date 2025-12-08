@@ -9,23 +9,30 @@ const Header: React.FC<{ content: HeaderContent }> = ({ content }) => {
   const { navLinks } = content;
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-gray-900/50 border-b border-gray-700/50">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-           <svg className="w-8 h-8 text-fuchsia-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-          <a href="#" className="text-xl font-bold text-white">Tsoft<span className="hidden lg:inline"> - Tool sản xuất veo3 hàng loạt</span></a>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-xl border-b border-white/5 ${window.scrollY > 10 ? 'bg-slate-950/80 shadow-2xl shadow-fuchsia-900/5' : 'bg-transparent'
+      }`}>
+      <div className="container mx-auto px-6 h-20 flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-fuchsia-600 to-pink-500 flex items-center justify-center shadow-lg shadow-fuchsia-500/20">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <a href="#" className="flex flex-col">
+            <span className="text-xl font-bold tracking-tight text-white leading-none">Tsoft</span>
+            <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wider leading-none mt-1 hidden sm:block">Video Automation Tool</span>
+          </a>
         </div>
-        
+
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-gray-300 hover:text-white transition-colors font-medium">
+            <a key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
               {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-500 transition-all group-hover:w-full"></span>
             </a>
           ))}
-           <a
+          <a
             href="#download"
-            className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105"
+            className="bg-gradient-to-r from-fuchsia-600 to-pink-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-bold py-2.5 px-6 rounded-full shadow-lg shadow-fuchsia-500/25 transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Bắt đầu ngay
           </a>
@@ -33,8 +40,12 @@ const Header: React.FC<{ content: HeaderContent }> = ({ content }) => {
 
         {/* Mobile Nav Button */}
         <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none" aria-label="Toggle menu">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 text-slate-300 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -47,16 +58,21 @@ const Header: React.FC<{ content: HeaderContent }> = ({ content }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-900/90 backdrop-blur-md">
-          <nav className="flex flex-col items-center space-y-4 py-4">
+        <div className="md:hidden absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-xl border-b border-white/10 shadow-2xl">
+          <nav className="flex flex-col p-6 space-y-4">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsMenuOpen(false)}>
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-slate-300 hover:text-white font-medium text-lg px-4 py-2 hover:bg-white/5 rounded-lg transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {link.name}
               </a>
             ))}
-             <a
+            <a
               href="#download"
-              className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 hover:scale-105 mt-2"
+              className="mt-4 bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white font-bold py-3 px-6 rounded-xl text-center shadow-lg shadow-fuchsia-500/20"
               onClick={() => setIsMenuOpen(false)}
             >
               Bắt đầu ngay

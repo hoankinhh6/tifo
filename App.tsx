@@ -63,10 +63,22 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-900 min-h-screen font-sans">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-gray-900 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+    <div className="relative min-h-screen font-sans bg-slate-950 text-slate-50 selection:bg-fuchsia-500/30 selection:text-fuchsia-200 overflow-x-hidden">
+      {/* Premium Background System */}
+      <div className="fixed inset-0 -z-10 h-full w-full bg-slate-950">
+        {/* Top Glow/Nebula Effect */}
+        <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(192,38,211,0.15),rgba(255,255,255,0))]"></div>
+
+        {/* Subtle Grid with Mask */}
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+
+        {/* Ambient Bottom Glow */}
+        <div className="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-fuchsia-900/10 to-transparent"></div>
+      </div>
+
       <Header content={siteData.header} />
-      <main>
+
+      <main className="relative z-10">
         <Hero content={siteData.hero} />
         <Features content={siteData.features} />
         <Stats content={siteData.stats} />
@@ -79,6 +91,7 @@ const App: React.FC = () => {
         <Contact content={siteData.contact} />
         <CTA content={siteData.cta} />
       </main>
+
       <Footer content={siteData.footer} />
     </div>
   );
