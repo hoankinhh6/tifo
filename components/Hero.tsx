@@ -64,7 +64,7 @@ const Hero: React.FC<{ content: HeroContent }> = ({ content }) => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
               <a
                 href="#download"
-                className="bg-gradient-to-r from-fuchsia-600 to-pink-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl shadow-fuchsia-500/30 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 hover:from-violet-500 hover:via-fuchsia-500 hover:to-pink-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-white/10"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                 {content.ctaButton1}

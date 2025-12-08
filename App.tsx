@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+// @ts-ignore
+import NET from 'vanta/dist/vanta.net.min';
+import * as THREE from 'three';
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
@@ -17,6 +20,9 @@ import { defaultData, SiteData, getDynamicDownloadData } from "./data";
 
 const App: React.FC = () => {
   const [route, setRoute] = useState(window.location.hash);
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+
   const [siteData, setSiteData] = useState<SiteData>(() => {
     try {
       const savedData = localStorage.getItem("siteData");
@@ -58,23 +64,42 @@ const App: React.FC = () => {
     loadDynamicDownloadData();
   }, []);
 
+  useEffect(() => {
+    if (!vantaEffect && vantaRef.current) {
+      setVantaEffect(NET({
+        el: vantaRef.current,
+        THREE: THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xc026d3, // Fuchsia 600 - Slightly deeper for elegance
+        backgroundColor: 0x020617, // Slate 950
+        points: 10.00, // Reduced density
+        maxDistance: 24.00, // Longer connections
+        spacing: 20.00, // More space between points
+        showDots: true
+      }))
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy()
+    }
+  }, [vantaEffect])
+
   if (route === "#/admin") {
     return <Admin data={siteData} setData={setSiteData} />;
   }
 
   return (
-    <div className="relative min-h-screen font-sans bg-slate-950 text-slate-50 selection:bg-fuchsia-500/30 selection:text-fuchsia-200 overflow-x-hidden">
-      {/* Premium Background System */}
-      <div className="fixed inset-0 -z-10 h-full w-full bg-slate-950">
-        {/* Top Glow/Nebula Effect */}
-        <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(192,38,211,0.15),rgba(255,255,255,0))]"></div>
+    <div className="relative min-h-screen font-sans bg-transparent text-slate-50 selection:bg-fuchsia-500/30 selection:text-fuchsia-200 overflow-x-hidden">
+      {/* Vanta.js Background */}
+      <div ref={vantaRef} className="fixed inset-0 -z-20 h-full w-full opacity-60" />
 
-        {/* Subtle Grid with Mask */}
-        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-
-        {/* Ambient Bottom Glow */}
-        <div className="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-fuchsia-900/10 to-transparent"></div>
-      </div>
+      {/* Stronger Overlay for Content Readability */}
+      <div className="fixed inset-0 -z-10 h-full w-full pointer-events-none bg-gradient-to-b from-slate-950/90 via-slate-950/50 to-slate-950/90"></div>
 
       <Header content={siteData.header} />
 
