@@ -104,12 +104,12 @@ export async function getDynamicDownloadData() {
       downloads.length > 0
         ? downloads
         : [
-            // Fallback downloads if extraction fails
-            {
-              href: "https://github.com/realvux/toolveo/releases/latest",
-              os: "Tải từ GitHub",
-            },
-          ],
+          // Fallback downloads if extraction fails
+          {
+            href: "https://github.com/realvux/toolveo/releases/latest",
+            os: "Tải từ GitHub",
+          },
+        ],
   };
 }
 
@@ -203,6 +203,7 @@ export interface SiteData {
       features: string[];
       popular?: boolean;
     }[];
+    additionalOption?: string;
     policy: {
       title: string;
       trialTitle: string;
@@ -445,6 +446,7 @@ export const defaultData: SiteData = {
         features: [
           "Tạo video không giới hạn",
           "Chất lượng video Full HD 1080p",
+          "Clone video đối thủ (Tính năng độc quyền)",
           "Tặng tool Kịch bản AI & Đồng nhất nhân vật",
           "Tự động tải & ghép nối",
           "Hỗ trợ qua email & Zalo",
@@ -460,6 +462,7 @@ export const defaultData: SiteData = {
         features: [
           "Tạo video không giới hạn",
           "Chất lượng video Full HD 1080p",
+          "Clone video đối thủ (Tính năng độc quyền)",
           "Tặng tool Kịch bản AI & Đồng nhất nhân vật",
           "Tự động tải & ghép nối",
           "Hỗ trợ ưu tiên",
@@ -485,6 +488,7 @@ export const defaultData: SiteData = {
         { name: "Lã Hoà", phone: "0968911593" },
       ],
     },
+    additionalOption: "Tính năng <b>tạo ảnh hàng loạt</b> với 3 model mới nhất của Google: Nano Banana, Nano Banana Pro và Imagen 4 <b>kích hoạt thêm có giá là 50.000đ mỗi tháng</b>",
   },
   contact: {
     title: "Liên hệ với chúng tôi",
