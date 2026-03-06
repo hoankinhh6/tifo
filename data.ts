@@ -432,7 +432,7 @@ export const defaultData: SiteData = {
         features: [
           "Tạo video không giới hạn",
           "Chất lượng video Full HD 1080p",
-          "Tặng Kèm KEY API phân tích kịch bản",
+          "Có sẵn APIKEY GEMINI của hệ thống",
           "Tự động tải & ghép nối",
           "Hỗ trợ qua email & Zalo",
         ],
@@ -447,7 +447,7 @@ export const defaultData: SiteData = {
           "Tạo video không giới hạn",
           "Chất lượng video Full HD 1080p",
           "Clone video đối thủ (Tính năng độc quyền)",
-          "Tặng Kèm KEY API phân tích kịch bản",
+          "Có sẵn APIKEY GEMINI của hệ thống",
           "Tự động tải & ghép nối",
           "Hỗ trợ qua email & Zalo",
         ],
@@ -455,7 +455,7 @@ export const defaultData: SiteData = {
       },
       {
         plan: "Gói 6 Tháng",
-        price: "1.200.000đ",
+        price: "1.500.000đ",
         priceSuffix: "/6 tháng",
         description:
           "Giải pháp tối ưu và tiết kiệm nhất cho công việc dài hạn.",
@@ -463,7 +463,7 @@ export const defaultData: SiteData = {
           "Tạo video không giới hạn",
           "Chất lượng video Full HD 1080p",
           "Clone video đối thủ (Tính năng độc quyền)",
-          "Tặng Kèm KEY API phân tích kịch bản",
+          "Có sẵn APIKEY GEMINI của hệ thống",
           "Tự động tải & ghép nối",
           "Hỗ trợ ưu tiên",
         ],
