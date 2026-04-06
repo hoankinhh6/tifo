@@ -431,7 +431,6 @@ export const defaultData: SiteData = {
           "Lựa chọn linh hoạt để trải nghiệm toàn bộ sức mạnh của Tsoft.",
         features: [
           "Tạo video không giới hạn",
-          "Chất lượng video Full HD 1080p",
           "Có sẵn APIKEY GEMINI của hệ thống",
           "Tính Năng tương tự Invideo tạo không giới hạn ảnh + video istock",
           "Tự động tải & ghép nối",
@@ -446,7 +445,6 @@ export const defaultData: SiteData = {
           "Tiết kiệm hơn cho các dự án ngắn hạn và chiến dịch marketing.",
         features: [
           "Tạo video không giới hạn",
-          "Chất lượng video Full HD 1080p",
           "Clone video đối thủ (Tính năng độc quyền)",
           "Có sẵn APIKEY GEMINI của hệ thống",
           "Tính Năng tương tự Invideo tạo không giới hạn ảnh + video istock",
@@ -463,7 +461,6 @@ export const defaultData: SiteData = {
           "Giải pháp tối ưu và tiết kiệm nhất cho công việc dài hạn.",
         features: [
           "Tạo video không giới hạn",
-          "Chất lượng video Full HD 1080p",
           "Clone video đối thủ (Tính năng độc quyền)",
           "Có sẵn APIKEY GEMINI của hệ thống",
           "Tính Năng tương tự Invideo tạo không giới hạn ảnh + video istock",
